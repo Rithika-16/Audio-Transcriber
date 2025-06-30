@@ -16,31 +16,30 @@ import java.nio.file.Files;
 @Service
 public class AzureSpeechService {
 
-    // 🔐 Replace with your actual Azure key
     private final String subscriptionKey = "1DhiHQ65YWWW7K3IOS3oF4tsVymFuC6g3WmUIidRg19VcGGBTHmOJQQJ99BFACYeBjFXJ3w3AAAYACOGqBss";
     private final String region = "eastus";
 
     public String transcribeAudio(MultipartFile file, String language) throws IOException, InterruptedException {
-        // Azure endpoint with language support
+        
         String endpoint = String.format(
                 "https://%s.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=%s",
                 region, language.trim()
         );
 
-        // Create temporary files
+        
         File inputFile = File.createTempFile("input-", getExtension(file.getOriginalFilename()));
         File wavFile = File.createTempFile("converted-", ".wav");
 
         try {
             file.transferTo(inputFile);
 
-            // Convert if file is not already WAV
+            
             if (!file.getOriginalFilename().endsWith(".wav")) {
                 ProcessBuilder pb = new ProcessBuilder(
                         "ffmpeg", "-y",
                         "-i", inputFile.getAbsolutePath(),
-                        "-ar", "16000", // sample rate
-                        "-ac", "1",     // mono channel
+                        "-ar", "16000", 
+                        "-ac", "1",     
                         wavFile.getAbsolutePath()
                 );
                 Process process = pb.start();
@@ -49,10 +48,10 @@ public class AzureSpeechService {
                     throw new RuntimeException("FFmpeg conversion failed.");
                 }
             } else {
-                wavFile = inputFile; // No conversion needed
+                wavFile = inputFile; 
             }
 
-            // Prepare HTTP request
+        
             byte[] audioBytes = Files.readAllBytes(wavFile.toPath());
 
             HttpRequest request = HttpRequest.newBuilder()
