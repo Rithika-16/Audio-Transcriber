@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:5173") // 👈 Important for React frontend
+@CrossOrigin(origins = "http://localhost:5173") 
 public class AudioTranscriberController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class AudioTranscriberController {
             );
         }
     }
-    // Simple error response object
+
     static class ErrorResponse {
         public String error;
         public String message;
