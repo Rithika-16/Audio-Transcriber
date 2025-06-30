@@ -27,7 +27,6 @@ public class AudioTranscriberController {
             );
         }
     }
-
     // Simple error response object
     static class ErrorResponse {
         public String error;

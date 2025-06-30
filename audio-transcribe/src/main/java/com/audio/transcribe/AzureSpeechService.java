@@ -32,7 +32,6 @@ public class AzureSpeechService {
         File wavFile = File.createTempFile("converted-", ".wav");
 
         try {
-            // Save uploaded file to disk
             file.transferTo(inputFile);
 
             // Convert if file is not already WAV
