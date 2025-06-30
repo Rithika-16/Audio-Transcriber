@@ -17,52 +17,54 @@
 	<artifactId>audio-transcribe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>audio-transcribe</name>
-	<description>AssemblyAI-based Audio Transcription using Spring Boot</description>
+	<description>Azure-based Audio Transcription using Spring Boot</description>
 
 	<properties>
 		<java.version>21</java.version>
 	</properties>
 
 	<dependencies>
-		<!-- Spring Boot Web for REST API -->
+
+		<!-- ✅ Spring Boot Web for REST APIs -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Apache HttpClient 5 for making HTTP requests to AssemblyAI -->
+		<!-- ✅ Azure Speech SDK for transcription -->
 		<dependency>
-			<groupId>org.apache.httpcomponents.client5</groupId>
-			<artifactId>httpclient5</artifactId>
-			<version>5.2.1</version>
+			<groupId>com.microsoft.cognitiveservices.speech</groupId>
+			<artifactId>client-sdk</artifactId>
+			<version>1.30.0</version> <!-- You can use latest -->
 		</dependency>
 
-		<!-- JSON parser for handling API responses -->
+		<!-- ✅ Jackson for JSON mapping (used internally by Azure SDK too) -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
-		<!-- For file utilities like reading byte array -->
+		<!-- ✅ Apache Commons IO (for file handling if needed) -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.11.0</version>
 		</dependency>
 
-		<!-- Spring Boot DevTools (optional for hot reload) -->
+		<!-- ✅ Devtools for hot reload (optional) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Test framework -->
+		<!-- ✅ Testing dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
